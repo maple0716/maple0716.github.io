@@ -28,10 +28,6 @@ function main() {
     let targetLatitude = 31.024722; // Modify the target latitude here
 
     arjs.on("gpsupdate", pos => {
-       /*  if (first) {
-            setupObjects(pos.coords.longitude, pos.coords.latitude);
-            first = false;
-        } */
         if (first) {
             const longitudeDiff = Math.abs(pos.coords.longitude - targetLongitude);
             const latitudeDiff = Math.abs(pos.coords.latitude - targetLatitude);
