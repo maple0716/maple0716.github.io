@@ -38,7 +38,7 @@ function main() {
 
             // 检查手机是否接近目标位置（经度和纬度的差值小于某个阈值）
             if (longitudeDiff < 0.001 && latitudeDiff < 0.001) {
-                setupCube(pos.coords.longitude, pos.coords.latitude);
+                setupObjects(pos.coords.longitude, pos.coords.latitude);
                 first = true;
             }
         }
