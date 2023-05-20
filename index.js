@@ -24,8 +24,8 @@ function main() {
 
     let fake = null;
     let first = true;
-    let targetLongitude =121.451111; // Modify the target longitude here
-    let targetLatitude = 31.025278; // Modify the target latitude here
+    let targetLongitude =121.451667; // Modify the target longitude here
+    let targetLatitude = 31.024722; // Modify the target latitude here
 
     arjs.on("gpsupdate", pos => {
        /*  if (first) {
