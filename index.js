@@ -25,8 +25,8 @@ function main() {
 
     let fake = null;
     let first = true;
-    let targetLongitude = 121.450278; // Modify the target longitude here
-    let targetLatitude = 31.025278; // Modify the target latitude here
+    let targetLongitude = 121.447280; // Modify the target longitude here
+    let targetLatitude = 31.027673; // Modify the target latitude here
 
     arjs.on("gpsupdate", pos => {
        /*  if (first) {
@@ -39,7 +39,7 @@ function main() {
             const latitudeDiff = Math.abs(pos.coords.latitude - targetLatitude);
 
             // 检查手机是否接近目标位置（经度和纬度的差值小于某个阈值）
-            if (longitudeDiff < 0.001 && latitudeDiff < 0.001) {
+            if (longitudeDiff < 0.0001 && latitudeDiff < 0.0001) {
                 setupObjects(pos.coords.longitude, pos.coords.latitude);
                 first = false;
             }
@@ -132,8 +132,3 @@ function main() {
 }
 
 main();
-
-
-
-
-
