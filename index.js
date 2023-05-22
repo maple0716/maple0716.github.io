@@ -1,3 +1,4 @@
+
 function main() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(80, 2, 0.1, 50000);
@@ -24,10 +25,15 @@ function main() {
 
     let fake = null;
     let first = true;
-    let targetLongitude =121.451667; // Modify the target longitude here
-    let targetLatitude = 31.024722; // Modify the target latitude here
+    let targetLongitude = 121.450278; // Modify the target longitude here
+    let targetLatitude = 31.025278; // Modify the target latitude here
 
     arjs.on("gpsupdate", pos => {
+       /*  if (first) {
+            setupObjects(pos.coords.longitude, pos.coords.latitude);
+            first = false;
+        } */
+
         if (first) {
             const longitudeDiff = Math.abs(pos.coords.longitude - targetLongitude);
             const latitudeDiff = Math.abs(pos.coords.latitude - targetLatitude);
@@ -35,7 +41,7 @@ function main() {
             // 检查手机是否接近目标位置（经度和纬度的差值小于某个阈值）
             if (longitudeDiff < 0.001 && latitudeDiff < 0.001) {
                 setupObjects(pos.coords.longitude, pos.coords.latitude);
-                first = true;
+                first = false;
             }
         }
     });
@@ -126,6 +132,8 @@ function main() {
 }
 
 main();
+
+
 
 
 
