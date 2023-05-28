@@ -1,17 +1,4 @@
-function fetchDataFromBackend() {
-    return new Promise((resolve, reject) => {
-        fetch('http://127.0.0.1/php/ar/index1.php')
-            .then(response => response.json())
-            .then(data => {
-                resolve(data); // 将获取到的数据传递给resolve方法
-            })
-            .catch(error => {
-                reject(error); // 将错误信息传递给reject方法
-            });
-    });
-}
-
-async function main() {
+function main() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(80, 2, 0.1, 50000);
     const renderer = new THREE.WebGLRenderer({
@@ -20,7 +7,6 @@ async function main() {
 
     const geom = new THREE.BoxGeometry(20, 20, 20);
     const arjs = new THREEx.LocationBased(scene, camera);
-    console.log(arjs);
 
     // You can change the minimum GPS accuracy needed to register a position - by default 1000m
     //const arjs = new THREEx.LocationBased(scene, camera. { gpsMinAccuracy: 30 } );
@@ -28,24 +14,24 @@ async function main() {
 
     const mouseStep = THREE.MathUtils.degToRad(5);
 
+
     let orientationControls;
+
     // Orientation controls only work on mobile device
     if (isMobile()) {
         orientationControls = new THREEx.DeviceOrientationControls(camera);
     }
 
     let fake = null;
-
-    const data = await fetchDataFromBackend();
-    console.log(data);
-    data.forEach(item => {
-        let targetLongitude = item.longitude;
-        let targetLatitude = item.latitude;
-        setupObjects(targetLongitude, targetLatitude);
-    })
-   
-   
-
+    let targetLongitude = 121.447280; // Modify the target longitude here
+    let targetLatitude = 31.027673; // Modify the target latitude here
+    let targetLongitude1 = 121.447280; // Modify the target longitude here
+    let targetLatitude1= 31.027673; // Modify the target latitude here
+    let targetLongitude2 = 121.447280; // Modify the target longitude here
+    let targetLatitude2 = 31.027673; // Modify the target latitude here
+    setupObjects(targetLatitude, targetLongitude);
+    setupObjects(targetLatitude1, targetLongitude1);
+    setupObjects(targetLatitude2, targetLongitude2);
     function isMobile() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // true for mobile device
@@ -100,7 +86,7 @@ async function main() {
                 cube3.visible = false;
                 cube4.visible = false;
             }
-            
+
         });
         arjs.on("gpserror", code => {
             alert(`GPS error: code ${code}`);
@@ -141,6 +127,7 @@ async function main() {
             });
         }
         requestAnimationFrame(render);
-    }
 }
+}
+
 main();
