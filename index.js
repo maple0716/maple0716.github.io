@@ -23,12 +23,12 @@ function main() {
     }
 
     let fake = null;
-    let targetLongitude = 121.447280; // Modify the target longitude here
-    let targetLatitude = 31.027673; // Modify the target latitude here
-    let targetLongitude1 = 121.447280; // Modify the target longitude here
-    let targetLatitude1= 31.027673; // Modify the target latitude here
-    let targetLongitude2 = 121.447280; // Modify the target longitude here
-    let targetLatitude2 = 31.027673; // Modify the target latitude here
+    let targetLongitude = 121.4573631; // Modify the target longitude here
+    let targetLatitude = 31.0365373; // Modify the target latitude here
+    let targetLongitude1 = 121.456931; // Modify the target longitude here
+    let targetLatitude1 = 31.036469; // Modify the target latitude here
+    let targetLongitude2 = 121.456453; // Modify the target longitude here
+    let targetLatitude2 = 31.036458; // Modify the target latitude here
     setupObjects(targetLatitude, targetLongitude);
     setupObjects(targetLatitude1, targetLongitude1);
     setupObjects(targetLatitude2, targetLongitude2);
@@ -126,8 +126,9 @@ function main() {
                 lastX = e.clientX;
             });
         }
-        requestAnimationFrame(render);
-}
+        /*  requestAnimationFrame(render); */
+    }
+    requestAnimationFrame(render);
 }
 
 main();
