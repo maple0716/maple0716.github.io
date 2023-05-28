@@ -126,9 +126,9 @@ function main() {
                 lastX = e.clientX;
             });
         }
-        /*  requestAnimationFrame(render); */
+        requestAnimationFrame(render); 
     }
-    requestAnimationFrame(render);
+    /* requestAnimationFrame(render); */
 }
 
 main();
