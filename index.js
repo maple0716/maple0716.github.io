@@ -67,10 +67,7 @@ function main() {
         const cube2 = new THREE.Mesh(geom, material2);
         const cube3 = new THREE.Mesh(geom, material3);
         const cube4 = new THREE.Mesh(geom, material4);
-        arjs.add(cube1, targetlongitude, targetlatitude + 0.001);
-        arjs.add(cube2, targetlongitude, targetlatitude - 0.001); // slightly south
-        arjs.add(cube3, targetlongitude - 0.001, targetlatitude); // slightly west
-        arjs.add(cube4, targetlongitude + 0.001, targetlatitude);
+
         // 根据手机距离立方体的距离，控制立方体的可见性
         arjs.on("gpsupdate", pos => {
             const longitudeDiff = Math.abs(pos.coords.longitude - targetLongitude);
@@ -86,6 +83,10 @@ function main() {
                 cube3.visible = false;
                 cube4.visible = false;
             }
+            arjs.add(cube1, pos.coords.longitude, pos.coords.latitude + 0.001);
+            arjs.add(cube2, pos.coords.longitudee, pos.coords.latitude - 0.001); // slightly south
+            arjs.add(cube3, pos.coords.longitude - 0.001, pos.coords.latitude); // slightly west
+            arjs.add(cube4, pos.coords.longitude + 0.001, pos.coords.latitude);
 
         });
         arjs.on("gpserror", code => {
@@ -126,9 +127,8 @@ function main() {
                 lastX = e.clientX;
             });
         }
-        requestAnimationFrame(render); 
+        requestAnimationFrame(render);
     }
-    /* requestAnimationFrame(render); */
 }
 
 main();
