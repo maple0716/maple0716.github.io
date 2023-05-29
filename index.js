@@ -1,4 +1,4 @@
-AFRAME.registerComponent('arObjectsContainer', {   
+AFRAME.registerComponent('pic', {   
     schema: {
         scale: {
             type: 'number',
@@ -34,8 +34,7 @@ AFRAME.registerComponent('arObjectsContainer', {
                 z: 0
             });
             entity.setAttribute('gps-projected-entity-place', {
-                latitude: locations[i].latitude,
-               
+                latitude: locations[i].latitude,     
                 longitude: locations[i].longitude,
             });
             entity.appendChild(text);
