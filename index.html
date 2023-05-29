@@ -15,6 +15,6 @@
 
         <!-- using gpsMinDistance: 5 => update GPS only if user moves by 5 meters or more => avoid shaking for near objects -->
         <!-- using accelerationToMove: 1.0 => 'smooth' inertial sensors precision precision in order to avoid distant places shaking -->
-        <a-camera rotation-reader gps-camera="gpsMinDistance: 10;"></a-camera>
+        <a-camera rotation-reader gps-camera="gpsMinDistance: 1;"></a-camera>
     </a-scene>
 </body>
