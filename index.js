@@ -1,8 +1,8 @@
-const latitude = 31.0272076;
-const longitude = 121.4466584;
+const latitude = 31.0271889;
+const longitude = 121.4469028;
 const text= 'hello,weizhi1!';
-const latitude1 = 44.504417;
-const longitude1 = 121.4457913;
+const latitude1 = 31.0271672;
+const longitude1 = 121.4466584;
 const text1 = 'hello,weizhi2!';
 function createARObject(latitude, longitude, text, latitude1, longitude1, text1) {
     const scene = document.querySelector('a-scene');
@@ -14,6 +14,7 @@ function createARObject(latitude, longitude, text, latitude1, longitude1, text1)
 
     const textEntity = document.createElement('a-entity');
     textEntity.setAttribute('text', `value: ${text}; color: black; align: center; width: 10;`);
+    textEntity1.setAttribute('scale', '5 5 5');
     textEntity.setAttribute('position', '0 10 0');
     entity.appendChild(textEntity);
 
@@ -25,6 +26,7 @@ function createARObject(latitude, longitude, text, latitude1, longitude1, text1)
 
     const textEntity1 = document.createElement('a-entity');
     textEntity1.setAttribute('text', `value: ${text1}; color: black; align: center; width: 10;`);
+    textEntity1.setAttribute('scale', '5 5 5');
     textEntity1.setAttribute('position', '0 10 0');
     entity1.appendChild(textEntity1);
 }
