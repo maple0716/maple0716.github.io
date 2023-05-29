@@ -6,22 +6,23 @@ document.addEventListener('DOMContentLoaded', function () {
         { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
         // 添加更多位置...
     ];
-    console.log(locations[0].latitude, locations[0].longitude, locations[0].text)
+    /* console.log(locations[0].latitude, locations[0].longitude, locations[0].text) */
 
     // 创建 AR 对象的函数
-    function createARObject(latitude, longitude, text) {
+    function createARObject(lat, lon, text) {
         const scene = document.querySelector('#arObjectsContainer');
 
         // 创建立方体实体
         const entity = document.createElement('a-box');
         entity.setAttribute('material', 'color: red;');
         entity.setAttribute('scale', '5 5 5');
-        entity.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
+        entity.setAttribute('gps-entity-place', `latitude:lat; longitude: lon`);
+        console.log(lat);
         scene.appendChild(entity);
 
         // 创建文字实体
         const textEntity = document.createElement('a-entity');
-        textEntity.setAttribute('text', `value: ${text}; color: black; align: center; width: 2;`);
+        textEntity.setAttribute('text', `value:text; color: black; align: center; width: 2;`);       
         textEntity.setAttribute('position', '0 5 0');
         entity.setAttribute('scale', '5 5 5');
         entity.appendChild(textEntity);
