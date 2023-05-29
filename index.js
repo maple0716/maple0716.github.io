@@ -1,38 +1,59 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // 定义经纬度和文字数据（从后端 PHP 文件获得）
-    const locations = [
-        { latitude: 31.0271378, longitude: 121.4470954, text: 'Hello, Location 1!' },
-        { latitude: 31.0269501, longitude: 121.4472652, text: 'Hello, Location 2!' },
-        { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
-        // 添加更多位置...
-    ];
-    /* console.log(locations[0].latitude, locations[0].longitude, locations[0].text) */
+AFRAME.registerComponent('arObjectsContainer', {   
+    schema: {
+        scale: {
+            type: 'number',
+            default: 10
+        }
+    },
 
-    // 创建 AR 对象的函数
-    function createARObject(lat, lon, text) {
-        const scene = document.querySelector('#arObjectsContainer');
+    init: function () {
+        const textScale = this.schema.scale * 100;
+        const locations = [
+            { latitude: 31.0271378, longitude: 121.4470954, text: 'Hello, Location 1!' },
+            { latitude: 31.0269501, longitude: 121.4472652, text: 'Hello, Location 2!' },
+            { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
+        ]
+        const scene1 = document.querySelector('#ENTITY');
 
-        // 创建立方体实体
-        const entity = document.createElement('a-box');
-        entity.setAttribute('material', 'color: red;');
-        entity.setAttribute('scale', '5 5 5');
-        entity.setAttribute('gps-entity-place', `latitude:lat; longitude: lon`);
-        console.log(lat);
-        scene.appendChild(entity);
-
-        // 创建文字实体
-        const textEntity = document.createElement('a-entity');
-        textEntity.setAttribute('text', `value:text; color: black; align: center; width: 2;`);       
-        textEntity.setAttribute('position', '0 5 0');
-        entity.setAttribute('scale', '5 5 5');
-        entity.appendChild(textEntity);
-    }
-
-    // 根据数据创建 AR 对象
-    for (let i = 0; i < locations.length; i++) {
-        const latitude = locations[i].latitude;
-        const longitude = locations[i].longitude;
-        const text = locations[i].text;
-        createARObject(latitude, longitude, text);
+        // Call the Hikar API (OpenStreetMap-based) to get local POIs.
+        // Note that data is only available for Europe and Turkey.
+        for (let i = 0; i < locations.length; i++) {
+            const entity = document.createElement('a-entity');
+            entity.setAttribute('look-at', '[gps-projected-camera]');
+            const text = document.createElement('a-text');
+            text.setAttribute('value', locations[i].latitude);
+            text.setAttribute('scale', {
+                x: textScale,
+                y: textScale,
+                z: textScale
+            });
+            text.setAttribute('align', 'center');
+            text.setAttribute('position', {
+                x: 0,
+                y: this.data.scale * 20,
+                z: 0
+            });
+            entity.setAttribute('gps-projected-entity-place', {
+                latitude: locations[i].latitude,
+               
+                longitude: locations[i].longitude,
+            });
+            entity.appendChild(text);
+            const box = document.createElement('a-box');
+            box.setAttribute('scale', {
+                x: this.data.scale * 10,
+                y: this.data.scale * 10,
+                z: this.data.scale * 10
+            });
+            box.setAttribute('height', 3);
+            box.setAttribute('material', 'color: red;');
+            entity.appendChild(box);
+            entity.setAttribute('position', {
+                x: 0,
+                y: this.data.scale * 10,
+                z: 0
+            });           
+            scene1.appendChild(entity);
+        };
     }
 });
