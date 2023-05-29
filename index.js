@@ -23,15 +23,18 @@ function main() {
     }
 
     let fake = null;
-    let targetLongitude = 121.4573631; // Modify the target longitude here
-    let targetLatitude = 31.0365373; // Modify the target latitude here
-    let targetLongitude1 = 121.456931; // Modify the target longitude here
-    let targetLatitude1 = 31.036469; // Modify the target latitude here
-    let targetLongitude2 = 121.456453; // Modify the target longitude here
-    let targetLatitude2 = 31.036458; // Modify the target latitude here
+    let targetLongitude = 121.4466584; // Modify the target longitude here
+    let targetLatitude = 31.0271672; // Modify the target latitude here
+    let targetLongitude1 = 121.4469028; // Modify the target longitude here
+    let targetLatitude1 = 31.0271889; // Modify the target latitude here
+    let targetLongitude2 = 121.4457913 // Modify the target longitude here
+    let targetLatitude2 = 31.0272076; // Modify the target latitude here
     setupObjects(targetLatitude, targetLongitude);
+    requestAnimationFrame(render);
     setupObjects(targetLatitude1, targetLongitude1);
+    requestAnimationFrame(render);
     setupObjects(targetLatitude2, targetLongitude2);
+    requestAnimationFrame(render);
     function isMobile() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // true for mobile device
@@ -84,7 +87,7 @@ function main() {
                 cube4.visible = false;
             }
             arjs.add(cube1, pos.coords.longitude, pos.coords.latitude + 0.001);
-            arjs.add(cube2, pos.coords.longitudee, pos.coords.latitude - 0.001); // slightly south
+            arjs.add(cube2, pos.coords.longitude, pos.coords.latitude - 0.001); // slightly south
             arjs.add(cube3, pos.coords.longitude - 0.001, pos.coords.latitude); // slightly west
             arjs.add(cube4, pos.coords.longitude + 0.001, pos.coords.latitude);
 
@@ -127,8 +130,9 @@ function main() {
                 lastX = e.clientX;
             });
         }
-        requestAnimationFrame(render);
+        
     }
+    
 }
 
 main();
