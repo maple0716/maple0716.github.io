@@ -1,33 +1,33 @@
-const latitude = 31.0271889;
-const longitude = 121.4469028;
-const text= 'hello,weizhi1!';
-const latitude1 = 31.0271672;
-const longitude1 = 121.4466584;
-const text1 = 'hello,weizhi2!';
-function createARObject(latitude, longitude, text, latitude1, longitude1, text1) {
-    const scene = document.querySelector('a-scene');
-    const entity = document.createElement('a-box');
-    entity.setAttribute('material', 'color: red;');
-    entity.setAttribute('scale', '20 20 20');
-    entity.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
-    scene.appendChild(entity);
+document.addEventListener('DOMContentLoaded', function () {
+    // 定义经纬度和文字数据（从后端 PHP 文件获得）
+    const locations = [
+        { latitude: 31.0271378, longitude: 121.4470954, text: 'Hello, Location 1!' },
+        { latitude: 31.0269501, longitude: 121.4472652, text: 'Hello, Location 2!' },
+        { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
+        // 添加更多位置...
+    ];
 
-    const textEntity = document.createElement('a-entity');
-    textEntity.setAttribute('text', `value: ${text}; color: black; align: center; width: 10;`);
-    textEntity1.setAttribute('scale', '5 5 5');
-    textEntity.setAttribute('position', '0 10 0');
-    entity.appendChild(textEntity);
+    // 创建 AR 对象的函数
+    function createARObject(latitude, longitude, text) {
+        const scene = document.querySelector('#arObjectsContainer');
 
-    const entity1 = document.createElement('a-box');
-    entity1.setAttribute('material', 'color: red;');
-    entity1.setAttribute('scale', '20 20 20');
-    entity1.setAttribute('gps-entity-place', `latitude: ${latitude1}; longitude: ${longitude1}`);
-    scene.appendChild(entity1);
+        // 创建立方体实体
+        const entity = document.createElement('a-box');
+        entity.setAttribute('material', 'color: red;');
+        entity.setAttribute('scale', '5 5 5');
+        entity.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
+        scene.appendChild(entity);
 
-    const textEntity1 = document.createElement('a-entity');
-    textEntity1.setAttribute('text', `value: ${text1}; color: black; align: center; width: 10;`);
-    textEntity1.setAttribute('scale', '5 5 5');
-    textEntity1.setAttribute('position', '0 10 0');
-    entity1.appendChild(textEntity1);
-}
-createARObject(latitude, longitude, text, latitude1, longitude1, text1);
+        // 创建文字实体
+        const textEntity = document.createElement('a-entity');
+        textEntity.setAttribute('text', `value: ${text}; color: black; align: center; width: 2;`);
+        textEntity.setAttribute('position', '0 5 0');
+        entity.appendChild(textEntity);
+    }
+
+    // 根据数据创建 AR 对象
+    locations.forEach(function (location) {
+        createARObject(location.latitude, location.longitude, location.text);
+    });
+});
+
