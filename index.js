@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
         // 添加更多位置...
     ];
+    console.log(locations[0].latitude, locations[0].longitude, locations[0].text)
 
     // 创建 AR 对象的函数
     function createARObject(latitude, longitude, text) {
@@ -22,12 +23,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const textEntity = document.createElement('a-entity');
         textEntity.setAttribute('text', `value: ${text}; color: black; align: center; width: 2;`);
         textEntity.setAttribute('position', '0 5 0');
-        entity.setAttribute('scale', '2 2 2');
+        entity.setAttribute('scale', '5 5 5');
         entity.appendChild(textEntity);
     }
 
     // 根据数据创建 AR 对象
-    locations.forEach(function (locations) {
-        createARObject(locations.latitude, locations.longitude, locations.text);
-    });
+    for (let i = 0; i < locations.length; i++) {
+        const latitude = locations[i].latitude;
+        const longitude = locations[i].longitude;
+        const text = locations[i].text;
+        createARObject(latitude, longitude, text);
+    }
 });
