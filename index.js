@@ -22,12 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const textEntity = document.createElement('a-entity');
         textEntity.setAttribute('text', `value: ${text}; color: black; align: center; width: 2;`);
         textEntity.setAttribute('position', '0 5 0');
+        entity.setAttribute('scale', '2 2 2');
         entity.appendChild(textEntity);
     }
 
     // 根据数据创建 AR 对象
-    locations.forEach(function (location) {
-        createARObject(location.latitude, location.longitude, location.text);
+    locations.forEach(function (locations) {
+        createARObject(locations.latitude, locations.longitude, locations.text);
     });
 });
-
