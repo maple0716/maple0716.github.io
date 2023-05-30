@@ -9,7 +9,6 @@
 </head>
 <body>
     <a-scene vr-mode-ui="enabled: false" arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
-        <a-camera gps-camera rotation-reader></a-camera>
         <a-entity gps-entity-place="latitude: 31.0271378; longitude: 121.4470954;">
             <a-text value="Hello, Location 1!" color="black" position="0 1.5 -1"></a-text>
         </a-entity>
@@ -17,8 +16,9 @@
             <a-text value="Hello, Location 2!" color="black" position="0 1.5 -1"></a-text>
         </a-entity>
         <a-entity gps-entity-place="latitude: 31.0268305; longitude: 121.4473130;">
-            <a-text value="Hello, Location 3!" color="black" position="0 1.5 -1"></a-text>
+            <a-text value="Hello, Location 3!" color="black" position="0 1.5 -1"></a-text>       
         </a-entity>
+        <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
 </body>
 </html>
