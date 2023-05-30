@@ -8,7 +8,7 @@
     <script src="./aframe-ar.js"></script>
 </head>
 <body>
-    <a-scene embedded arjs="sourceType: webcam;">
+    <a-scene vr-mode-ui="enabled: false" arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
         <a-camera gps-camera rotation-reader></a-camera>
         <a-entity gps-entity-place="latitude: 31.0271378; longitude: 121.4470954;">
             <a-text value="Hello, Location 1!" color="black" position="0 1.5 -1"></a-text>
