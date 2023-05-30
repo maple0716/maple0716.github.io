@@ -21,18 +21,28 @@ function main() {
     if (isMobile()) {
         orientationControls = new THREEx.DeviceOrientationControls(camera);
     }
-    
+
     let fake = null;
     const locations = [
-            { latitude: 31.0271378, longitude: 121.4470954, text: 'Hello, Location 1!' },
-            { latitude: 31.0269501, longitude: 121.4472652, text: 'Hello, Location 2!' },
-            { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
-        ]
+        { latitude: 31.0271378, longitude: 121.4470954, text: 'Hello, Location 1!' },
+        { latitude: 31.0269501, longitude: 121.4472652, text: 'Hello, Location 2!' },
+        { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
+    ]
     locations.forEach((location) => {
         setupObjects(location.longitude, location.latitude);
     });
 
-   
+    
+   /*  let targetLongitude = 121.4470954; // Modify the target longitude here
+    let targetLatitude = 31.0271378; // Modify the target latitude here
+    let targetLongitude1 = 121.4472652; // Modify the target longitude here
+    let targetLatitude1 = 31.0269501; // Modify the target latitude here
+    let targetLongitude2 = 121.4473130 // Modify the target longitude here
+    let targetLatitude2 = 31.0268305; // Modify the target latitude here
+    setupObjects(targetLatitude, targetLongitude);
+    setupObjects(targetLatitude1, targetLongitude1);
+    setupObjects(targetLatitude2, targetLongitude2); */
+  
  
     function isMobile() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -60,7 +70,7 @@ function main() {
         camera.updateProjectionMatrix();
     }
 
-    function setupObjects(targetlongitude, targetlatitude) {
+    function setupObjects(longitude, latitude) {
         const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
         const material2 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
         const material3 = new THREE.MeshBasicMaterial({ color: 0x0000ff });
@@ -72,8 +82,8 @@ function main() {
 
         // 根据手机距离立方体的距离，控制立方体的可见性
         arjs.on("gpsupdate", pos => {
-            const longitudeDiff = Math.abs(pos.coords.longitude - targetLongitude);
-            const latitudeDiff = Math.abs(pos.coords.latitude - targetLatitude);
+            const longitudeDiff = Math.abs(pos.coords.longitude - longitude);
+            const latitudeDiff = Math.abs(pos.coords.latitude - latitude);
             if (longitudeDiff < 0.0001 && latitudeDiff < 0.0001) {
                 cube1.visible = true;
                 cube2.visible = true;
@@ -131,9 +141,7 @@ function main() {
         }
         
     }
-      requestAnimationFrame(render);
-
-    
+      requestAnimationFrame(render);    
 }
 
 main();
