@@ -28,7 +28,7 @@ function main() {
             { latitude: 31.0269501, longitude: 121.4472652, text: 'Hello, Location 2!' },
             { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location 3!' },
         ]
-    Locations.forEach((location) => {
+    locations.forEach((location) => {
         setupObjects(location.longitude, location.latitude);
     });
 
