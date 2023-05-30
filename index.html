@@ -9,7 +9,7 @@
 </head>
 <body>
     <a-scene embedded arjs="sourceType: webcam;">
-        <a-camera-static preset="hiro"></a-camera-static>
+        <a-camera gps-camera rotation-reader></a-camera>
         <a-entity gps-entity-place="latitude: 31.0271378; longitude: 121.4470954;">
             <a-text value="Hello, Location 1!" color="black" position="0 1.5 -1"></a-text>
         </a-entity>
