@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>AR.js Peakfinder (2D - no elevation)</title>
-        <script src="./aframe.min.js"></script>
-        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-        <script type='text/javascript' src='./aframe-ar-nft.js'></script>
-        <script type='text/javascript' src='index.js'></script>
-    </head>
-    <body>
-    <a-scene vr-mode-ui="enabled: false" arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'renderer='antialias: true; alpha: true'>
-        <a-camera gps-projected-camera rotation-reader></a-camera>
-        <a-entity id="ENTITY"></a-entity>
+<head>
+    <title>AR.js - Place 2D Text at Fixed GPS Coordinates</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://rawcdn.githack.com/AR-js-org/AR.js/3.3.1/aframe/build/aframe.min.js"></script>
+    <script src="https://rawcdn.githack.com/jeromeetienne/AR.js/2.2.0/three.js/build/ar.js"></script>
+    <script src="https://rawcdn.githack.com/jeromeetienne/AR.js/2.2.0/three.js/build/aframe-ar.js"></script>
+</head>
+<body>
+    <a-scene embedded arjs="sourceType: webcam;">
+        <a-camera-static preset="hiro"></a-camera-static>
+        <a-entity gps-entity-place="latitude: 31.0271378; longitude: 121.4470954;">
+            <a-text value="Hello, Location 1!" color="black" position="0 1.5 -1"></a-text>
+        </a-entity>
+        <a-entity gps-entity-place="latitude: 31.0269501; longitude: 121.4472652;">
+            <a-text value="Hello, Location 2!" color="black" position="0 1.5 -1"></a-text>
+        </a-entity>
+        <a-entity gps-entity-place="latitude: 31.0268305; longitude: 121.4473130;">
+            <a-text value="Hello, Location 3!" color="black" position="0 1.5 -1"></a-text>
+        </a-entity>
     </a-scene>
-        
-    </body>
+</body>
 </html>
 
 
