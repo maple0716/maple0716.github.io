@@ -1,5 +1,3 @@
-
-
 AFRAME.registerComponent('placetext', {
     schema: {
         latitude: { type: 'number' },
