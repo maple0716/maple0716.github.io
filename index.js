@@ -26,6 +26,8 @@ AFRAME.registerComponent('placetext', {
             latitude: this.data.latitude,
             longitude: this.data.longitude,
         });
+        // Add updateDistance component to place entity
+        placeEntity.setAttribute('updateDistance', '');
 
 
         // Add text entity to place entity
@@ -34,8 +36,29 @@ AFRAME.registerComponent('placetext', {
         // Append place entity to scene
         const scene = document.querySelector('#ENTITY');
         scene.appendChild(placeEntity);
+        this.updateDistance(); // Call updateDistance method 
+    },
+    updateDistance: function () {
+        const camera = document.querySelector('[gps-camera]');
+        const placeEntity = this.el;
+        const mobileThreshold = 5; // 5-meter range threshold for mobile devices
+        placeEntity.addEventListener('gps-entity-place-loaded', function () {
+            const distance = camera.getAttribute('gps-camera').position.distanceTo(placeEntity.object3D.position);
+            const isMobile = AFRAME.utils.device.isMobile();
+            const textEntity = placeEntity.querySelector('a-text');
+
+            if ((isMobile && distance <= mobileThreshold)) {
+                textEntity.setAttribute('visible', 'true');
+            } else {
+                textEntity.setAttribute('visible', 'false');
+            }
+        });
+    },
+    tick: function () {
+        this.updateDistance();
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const locations = [
