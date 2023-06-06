@@ -6,7 +6,7 @@ AFRAME.registerComponent('placetext', {
         scale: { type: 'number', default: 10 }
     },
     init: function () {
-        const textScale = this.data.scale * 20;
+        const textScale = this.data.scale * 10;
         // Create text entity
         const textEntity = document.createElement('a-text');
         textEntity.setAttribute('value', this.data.text);
