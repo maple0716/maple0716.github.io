@@ -1,3 +1,5 @@
+
+
 AFRAME.registerComponent('placetext', {
     schema: {
         latitude: { type: 'number' },
@@ -62,9 +64,9 @@ AFRAME.registerComponent('placetext', {
 
 document.addEventListener('DOMContentLoaded', function () {
     const locations = [
-        { latitude: 31.0271378, longitude: 121.4470954, text: 'Hello, Location x!' },
-        { latitude: 31.0269501, longitude: 121.4472652, text: 'Hello, Location y!' },
-        { latitude: 31.0268305, longitude: 121.4473130, text: 'Hello, Location z!' },
+        { latitude: 31.0279391, longitude: 121.4469188, text: 'Hello, Location x!' },
+        { latitude: 31.0282544, longitude: 121.4464867, text: 'Hello, Location y!' },
+        { latitude: 31.0286181, longitude: 121.4461585, text: 'Hello, Location z!' },
     ];
     const entityContainer = document.querySelector('a-scene');
     for (let i = 0; i < locations.length; i++) {
