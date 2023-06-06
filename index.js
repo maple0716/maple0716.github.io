@@ -6,7 +6,7 @@ AFRAME.registerComponent('placetext', {
         scale: { type: 'number', default: 10 }
     },
     init: function () {
-        const textScale = this.data.scale * 10;
+        const textScale = this.data.scale * 20;
         // Create text entity
         const textEntity = document.createElement('a-text');
         textEntity.setAttribute('value', this.data.text);
@@ -27,7 +27,6 @@ AFRAME.registerComponent('placetext', {
             longitude: this.data.longitude,
         });
         // Add updateDistance component to place entity
-        placeEntity.setAttribute('updateDistance', '');
 
 
         // Add text entity to place entity
@@ -36,21 +35,23 @@ AFRAME.registerComponent('placetext', {
         // Append place entity to scene
         const scene = document.querySelector('#ENTITY');
         scene.appendChild(placeEntity);
-        this.updateDistance(); // Call updateDistance method 
+        /* this.updateDistance(); // Call updateDistance method  */
     },
     updateDistance: function () {
         const camera = document.querySelector('[gps-camera]');
         const placeEntity = this.el;
         const mobileThreshold = 5; // 5-meter range threshold for mobile devices
-        placeEntity.addEventListener('gps-entity-place-loaded', function () {
-            const distance = camera.getAttribute('gps-camera').position.distanceTo(placeEntity.object3D.position);
+        placeEntity.addEventListener('gps-projected-entity-place-loaded', function () {
+            const distance = camera.getAttribute('gps-projected-camera').position.distanceTo(placeEntity.object3D.position);
             const isMobile = AFRAME.utils.device.isMobile();
             const textEntity = placeEntity.querySelector('a-text');
 
             if ((isMobile && distance <= mobileThreshold)) {
                 textEntity.setAttribute('visible', 'true');
+                console.log(111);
             } else {
                 textEntity.setAttribute('visible', 'false');
+                console.log(222);
             }
         });
     },
