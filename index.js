@@ -29,7 +29,7 @@ AFRAME.registerComponent('placetext', {
         scale: { type: 'number', default: 10 }
     },
     init: function () {
-        const textScale = this.data.scale * 20;
+        const textScale = this.data.scale * 3;
         // Create text entity
         const textEntity = document.createElement('a-text');
         textEntity.setAttribute('value', this.data.text);
@@ -50,11 +50,11 @@ AFRAME.registerComponent('placetext', {
             longitude: this.data.longitude,
         });
         // Add updateDistance component to place entity
-        textEntity.setAttribute('distance', 'max:5;');
+        /* textEntity.setAttribute('distance', 'max:5;'); */
         
         placeEntity.setAttribute('ar-distance', {
             target: textEntity,
-            distance: 5
+            distance: 10
         });
 
 
@@ -70,9 +70,9 @@ AFRAME.registerComponent('placetext', {
 
 document.addEventListener('DOMContentLoaded', function () {
     const locations = [
-        { latitude: 31.0279391, longitude: 121.4469188, text: 'Hello, Location x!' },
-        { latitude: 31.0282544, longitude: 121.4464867, text: 'Hello, Location y!' },
-        { latitude: 31.0286181, longitude: 121.4461585, text: 'Hello, Location z!' },
+        { latitude: 31.0279391, longitude: 121.4469188, text: 'Hello, Location 1!' },
+        { latitude: 31.0282544, longitude: 121.4464867, text: 'Hello, Location 2!' },
+        { latitude: 31.0286181, longitude: 121.4461585, text: 'Hello, Location 3!' },
     ];
     const entityContainer = document.querySelector('a-scene');
     for (let i = 0; i < locations.length; i++) {
