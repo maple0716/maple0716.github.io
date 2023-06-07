@@ -54,7 +54,7 @@ AFRAME.registerComponent('placetext', {
         
         placeEntity.setAttribute('ar-distance', {
             target: textEntity,
-            distance: 10
+            distance: 5
         });
 
 
