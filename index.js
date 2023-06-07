@@ -1,3 +1,26 @@
+AFRAME.registerComponent('ar-distance', {
+    schema: {
+        target: { type: 'selector' },
+        distance: { type: 'number', default: 5 }
+    },
+    tick: function () {
+        var camera = this.el.sceneEl.camera;
+        var target = this.data.target.object3D;
+        var distance = this.data.distance;
+
+        var cameraPosition = camera.getWorldPosition(new THREE.Vector3());
+        var targetPosition = target.getWorldPosition(new THREE.Vector3());
+
+        var currentDistance = cameraPosition.distanceTo(targetPosition);
+
+        if (currentDistance <= distance) {
+            this.data.target.setAttribute('visible', true);
+        } else {
+            this.data.target.setAttribute('visible', false);
+        }
+    }
+});
+
 AFRAME.registerComponent('placetext', {
     schema: {
         latitude: { type: 'number' },
@@ -6,7 +29,7 @@ AFRAME.registerComponent('placetext', {
         scale: { type: 'number', default: 10 }
     },
     init: function () {
-        const textScale = this.data.scale * 10;
+        const textScale = this.data.scale * 20;
         // Create text entity
         const textEntity = document.createElement('a-text');
         textEntity.setAttribute('value', this.data.text);
@@ -27,6 +50,12 @@ AFRAME.registerComponent('placetext', {
             longitude: this.data.longitude,
         });
         // Add updateDistance component to place entity
+        textEntity.setAttribute('distance', 'max:5;');
+        
+        placeEntity.setAttribute('ar-distance', {
+            target: textEntity,
+            distance: 10
+        });
 
 
         // Add text entity to place entity
@@ -35,29 +64,7 @@ AFRAME.registerComponent('placetext', {
         // Append place entity to scene
         const scene = document.querySelector('#ENTITY');
         scene.appendChild(placeEntity);
-        /* this.updateDistance(); // Call updateDistance method  */
     },
-    updateDistance: function () {
-        const camera = document.querySelector('[gps-camera]');
-        const placeEntity = this.el;
-        const mobileThreshold = 5; // 5-meter range threshold for mobile devices
-        placeEntity.addEventListener('gps-projected-entity-place-loaded', function () {
-            const distance = camera.getAttribute('gps-projected-camera').position.distanceTo(placeEntity.object3D.position);
-            const isMobile = AFRAME.utils.device.isMobile();
-            const textEntity = placeEntity.querySelector('a-text');
-
-            if ((isMobile && distance <= mobileThreshold)) {
-                textEntity.setAttribute('visible', 'true');
-                console.log(111);
-            } else {
-                textEntity.setAttribute('visible', 'false');
-                console.log(222);
-            }
-        });
-    },
-    tick: function () {
-        this.updateDistance();
-    }
 });
 
 
