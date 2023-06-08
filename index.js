@@ -49,9 +49,8 @@ AFRAME.registerComponent('placetext', {
             latitude: this.data.latitude,
             longitude: this.data.longitude,
         });
-        // Add updateDistance component to place entity
-        /* textEntity.setAttribute('distance', 'max:5;'); */
-        
+
+
         placeEntity.setAttribute('ar-distance', {
             target: textEntity,
             distance: 10
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const locations = [
         { latitude: 31.0279391, longitude: 121.4469188, text: 'Hello, Location 1!' },
         { latitude: 31.0282544, longitude: 121.4464867, text: 'Hello, Location 2!' },
-        { latitude: 31.0286181, longitude: 121.4461585, text: 'Hello, Location 3!' },
+        { latitude: 31.0278487, longitude: 121.4472833, text: 'Hello, Location 3!' },
     ];
     const entityContainer = document.querySelector('a-scene');
     for (let i = 0; i < locations.length; i++) {
