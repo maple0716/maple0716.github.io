@@ -29,7 +29,7 @@ AFRAME.registerComponent('placetext', {
         scale: { type: 'number', default: 10 }
     },
     init: function () {
-        const textScale = this.data.scale * 3;
+        const textScale = this.data.scale * 10;
         // Create text entity
         const textEntity = document.createElement('a-text');
         textEntity.setAttribute('value', this.data.text);
@@ -49,17 +49,18 @@ AFRAME.registerComponent('placetext', {
             latitude: this.data.latitude,
             longitude: this.data.longitude,
         });
-
-
+        // Add updateDistance component to place entity
+        /* textEntity.setAttribute('distance', 'max:5;'); */
         placeEntity.setAttribute('ar-distance', {
             target: textEntity,
             distance: 10
         });
-
+        
 
         // Add text entity to place entity
         placeEntity.appendChild(textEntity);
-
+       
+       
         // Append place entity to scene
         const scene = document.querySelector('#ENTITY');
         scene.appendChild(placeEntity);
