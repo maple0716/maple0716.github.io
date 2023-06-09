@@ -55,12 +55,12 @@ AFRAME.registerComponent('placetext', {
             target: textEntity,
             distance: 10
         });
-        
+
 
         // Add text entity to place entity
         placeEntity.appendChild(textEntity);
-       
-       
+
+
         // Append place entity to scene
         const scene = document.querySelector('#ENTITY');
         scene.appendChild(placeEntity);
